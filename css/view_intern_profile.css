@@ -1,0 +1,193 @@
+/* Fail: css/view_intern_profile.css */
+
+/* 1. Penggunaan Pembolehubah (Variables) yang sama seperti dashboard asal */
+:root {
+    --primary: #6f42c1; 
+    --primary-dark: #5a32a3;
+    --primary-light: #f3ebff;
+    --primary-gradient: linear-gradient(135deg, #6f42c1, #9b51e0);
+    --bg-light: #f8f9fc;
+    --white: #ffffff;
+    --text-main: #333;
+    --text-muted: #888;
+    --danger: #ea4335;
+}
+
+/* 2. Layout Alignment - Memberi kesan 'overlap' pada header ungu */
+.main-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 30px;
+    margin-top: -60px; /* Menolak kandungan ke atas untuk bertindih dengan banner */
+    position: relative;
+    z-index: 100;
+}
+
+/* 3. Sidebar Styling (Senarai Nama Intern) */
+.intern-sidebar .section-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    height: fit-content;
+}
+
+.intern-sidebar h3 {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.intern-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.intern-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: var(--text-main);
+    border-radius: 12px;
+    background: #fafafa;
+    border: 1px solid #f1f1f1;
+    transition: 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.intern-item:hover {
+    background: var(--primary-light);
+    border-color: #d8c5f7;
+    color: var(--primary);
+    transform: translateX(5px);
+}
+
+.intern-item.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary-dark);
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.2);
+}
+
+/* 4. Profile Display Area (Halaman Butiran) */
+.profile-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+}
+
+.card-header-flex {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* Avatar berbentuk Squircle (Kotak Bulat) mengikut gaya modern dashboard */
+.avatar-sq {
+    width: 80px;
+    height: 80px;
+    background: var(--primary-gradient);
+    color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 800;
+    box-shadow: 0 8px 20px rgba(111, 66, 193, 0.2);
+}
+
+.card-header-flex h2 {
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    color: var(--text-main);
+}
+
+.id-tag {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.85rem;
+    background: var(--primary-light);
+    padding: 4px 12px;
+    border-radius: 6px;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid #f1f1f1;
+    margin: 30px 0;
+}
+
+/* 5. Grid Maklumat */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.info-box label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.info-box p {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #2d3436;
+}
+
+/* 6. Footer & Empty States */
+.action-footer {
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid #f1f1f1;
+}
+
+.empty-state {
+    background: var(--white);
+    padding: 120px 40px;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px dashed #ddd;
+    color: var(--text-muted);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.empty-txt {
+    color: #999;
+    font-style: italic;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* 7. Responsive (Mobile) */
+@media (max-width: 850px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+        margin-top: -40px;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .intern-sidebar {
+        margin-bottom: 20px;
+    }
+}

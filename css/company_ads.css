@@ -1,0 +1,127 @@
+:root {
+    --primary: #6f42c1; 
+    --primary-dark: #5a32a3;
+    --primary-light: #f3ebff;
+    --primary-gradient: linear-gradient(135deg, #6f42c1, #9b51e0);
+    
+    --bg-light: #f8f9fc;
+    --success: #34a853;
+    --danger: #ea4335;
+    --pending: #fbbc05;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+body { background: var(--bg-light); color: #333; }
+
+.container { max-width: 1100px; margin: auto; padding: 0 20px; }
+
+/* NAVBAR (Sizing ikut Applicants Page) */
+.navbar { background: white; padding: 12px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 2000; }
+.nav-container { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+.nav-brand { font-weight: 700; color: var(--primary); font-size: 1.3rem; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-brand div { background: var(--primary); color: white; padding: 5px 12px; border-radius: 8px; font-size: 14px; }
+
+.nav-menu { display: flex; gap: 25px; list-style: none; align-items: center; }
+.nav-menu a { text-decoration: none; color: #555; font-weight: 500; font-size: 0.95rem; transition: 0.3s; }
+.nav-menu a:hover, .nav-menu a.active { color: var(--primary); }
+.btn-logout { color: var(--danger) !important; font-weight: 600; text-decoration: none; }
+
+/* DROPDOWN */
+.dropdown { position: relative; padding: 10px 0; }
+.dropdown-content { 
+    display: none; 
+    position: absolute; 
+    background: white; 
+    min-width: 230px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+    border-radius: 12px; 
+    padding: 10px; 
+    top: 100%; 
+    right: 0; 
+    border: 1px solid #eee; 
+    z-index: 2100;
+}
+.dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.2s ease-in-out; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-content a { 
+    display: block; 
+    padding: 12px; 
+    color: #444; 
+    border-radius: 8px; 
+    font-size: 0.85rem; 
+    text-decoration: none; 
+    transition: 0.2s; 
+}
+.dropdown-content a:hover { background: var(--primary-light); color: var(--primary); padding-left: 18px; }
+
+/* HEADER SECTION (Sizing ikut Applicants Page) */
+.dashboard-header { 
+    background: var(--primary-gradient); 
+    color: white; 
+    padding: 50px 0; 
+    text-align: center; 
+    margin-bottom: 30px; 
+    border-radius: 0 0 30px 30px;
+}
+.dashboard-header h1 { font-size: 1.8rem; margin-bottom: 10px; }
+
+/* SECTION CARD */
+.section-card { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee; margin-bottom: 30px; }
+.section-card h3 { margin-bottom: 20px; color: var(--primary); font-size: 1.2rem; }
+
+/* FORMS (Sizing & Style) */
+label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: #666; }
+input[type="text"], input[type="date"], textarea { 
+    width: 100%; 
+    padding: 12px 15px; 
+    margin-bottom: 20px; 
+    border-radius: 10px; 
+    border: 1px solid #ddd; 
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+input:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.1); }
+
+button[name="create_ad"] { 
+    background: var(--primary); 
+    color: white; 
+    padding: 14px 25px; 
+    border: none; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    font-weight: 700; 
+    width: 100%;
+    transition: 0.3s;
+    font-size: 1rem;
+}
+button[name="create_ad"]:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(111, 66, 193, 0.3); }
+
+/* TABLE SIZING (Sama dengan Applicants) */
+.data-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.data-table th { background: #f8f9fa; padding: 15px; text-align: left; font-size: 0.85rem; color: #5f6368; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--primary-light); }
+.data-table td { padding: 15px; border-bottom: 1px solid #eee; font-size: 0.95rem; vertical-align: middle; }
+.data-table tr:hover { background-color: #fafafa; }
+
+/* STATUS BADGE */
+.status-badge { padding: 6px 14px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; display: inline-block; }
+.status-active { background: #e6f4ea; color: #1e7e34; border: 1px solid #81c995; }
+
+/* ALERT */
+.alert { 
+    background: var(--primary-light); 
+    padding: 15px; 
+    border-radius: 10px; 
+    margin-bottom: 20px; 
+    border-left: 5px solid var(--primary); 
+    color: var(--primary-dark); 
+    font-weight: 600; 
+}
+
+@media (max-width: 768px) {
+    .nav-menu { display: none; } /* Contoh untuk mobile */
+}

@@ -1,0 +1,269 @@
+/* Use existing dashboard background */
+body {
+    background-color: #f8f9fc !important;
+    margin: 0;
+}
+
+.main-content-area {
+    display: flex;
+    justify-content: center;
+    margin-top: -60px; /* Pull card into the header banner */
+    padding-bottom: 60px;
+}
+
+/* Centered modern card - Phone size but bigger */
+.modern-edit-card {
+    background: white;
+    width: 100%;
+    max-width: 460px; 
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+}
+
+/* Avatar Styling */
+.avatar-edit-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.avatar-frame {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #f3ebff;
+}
+
+.avatar-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-photo-select {
+    display: inline-block;
+    background: #f3ebff;
+    color: #6f42c1;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: 0.3s;
+}
+
+.btn-photo-select:hover {
+    background: #6f42c1;
+    color: white;
+}
+
+/* Form Styling */
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-wrapper label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #888;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px;
+    border: 1.5px solid #eee;
+    border-radius: 12px;
+    background: #fafafa;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: #6f42c1;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(111, 66, 193, 0.1);
+}
+
+/* Buttons */
+.btn-submit-save {
+    background: #6f42c1;
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn-submit-save:hover {
+    background: #5a32a3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(111, 66, 193, 0.2);
+}
+
+.cancel-text {
+    text-align: center;
+    text-decoration: none;
+    color: #999;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.footer-note {
+    text-align: center;
+    padding: 40px 0;
+    color: #bbb;
+    font-size: 0.8rem;
+}
+
+/* Container for the locked input */
+.input-relative {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* The actual Locked Input */
+.field-locked input {
+    background-color: #fcfcfd !important; /* Very light clean gray */
+    color: #a0aec0 !important; /* Muted text color */
+    border: 1.5px dashed #e2e8f0 !important; /* Dashed border looks "official" and locked */
+    cursor: not-allowed;
+    padding-right: 80px !important; /* Make room for the badge */
+}
+
+/* The "LOCKED" Badge inside the input */
+.lock-badge {
+    position: absolute;
+    right: 12px;
+    background: #edf2f7;
+    color: #718096;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    letter-spacing: 0.5px;
+    border: 1px solid #e2e8f0;
+}
+
+/* Subtle change to label for locked fields */
+.field-locked label {
+    color: #6f42c1; /* Keep the brand color but maybe add a hint */
+    opacity: 0.8;
+}
+
+/* Hover effect to show it's unchangeable */
+.field-locked:hover input {
+    border-color: #cbd5e0 !important;
+}
+
+/* Layout Alignment */
+.main-content {
+    min-height: calc(100vh - 70px);
+}
+
+.modern-edit-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 800px;
+    margin: -50px auto 40px; /* Overlaps purple header */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 10;
+}
+
+/* Avatar Section */
+.avatar-edit-section { text-align: center; margin-bottom: 35px; }
+.avatar-frame {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    overflow: hidden;
+    border: 4px solid #f3ebff;
+}
+.avatar-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+.btn-photo-select {
+    display: inline-block;
+    background: #6f42c1;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Form Styles */
+.form-fields { max-width: 480px; margin: 0 auto; }
+.input-wrapper { margin-bottom: 20px; }
+.input-wrapper label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #666;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1.5px solid #edf2f7;
+    border-radius: 10px;
+    font-size: 0.95rem;
+}
+
+/* Locked Styling */
+.field-locked input { background: #f8f9fc; border-style: dashed; color: #a0aec0; }
+.input-relative { position: relative; display: flex; align-items: center; }
+.lock-badge {
+    position: absolute;
+    right: 15px;
+    font-size: 0.6rem;
+    background: #edf2f7;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 800;
+}
+
+/* Action Buttons */
+.btn-submit-save {
+    width: 100%;
+    background: #6f42c1;
+    color: white;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.cancel-text {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #999;
+    font-size: 0.85rem;
+    text-decoration: none;
+}

@@ -1,0 +1,140 @@
+:root { 
+    --primary: #6f42c1; 
+    --secondary: #9b51e0; 
+    --success: #34a853; 
+    --danger: #ea4335; 
+    --bg: #f8f9fc; 
+    --white: #ffffff; 
+}
+
+/* STICKY FOOTER LOGIC */
+html, body { height: 100%; }
+body { display: flex; flex-direction: column; margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: #333; }
+
+/* NAVBAR (Matches Dashboard) */
+.navbar { background: white; padding: 15px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+.nav-container { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+.nav-brand { font-weight: 700; color: var(--primary); font-size: 1.3rem; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-brand div { background: var(--primary); color: white; padding: 5px 10px; border-radius: 8px; font-size: 15px; }
+.nav-menu { display: flex; gap: 25px; list-style: none; align-items: center; }
+.nav-menu a { text-decoration: none; color: #555; font-weight: 500; font-size: 0.95rem; }
+.nav-menu a:hover { color: var(--primary); }
+
+/* DROPDOWN */
+.dropdown { position: relative; }
+.dropdown-toggle { display: flex; align-items: center; gap: 6px; text-decoration: none; color: #555; font-weight: 500; }
+.arrow { font-size: 0.7rem; transition: transform 0.25s ease; }
+.dropdown-content { position: absolute; top: 120%; right: 0; background: white; min-width: 220px; border-radius: 14px; padding: 8px; box-shadow: 0 15px 35px rgba(0,0,0,0.12); border: 1px solid #eee; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: all 0.25s ease; z-index: 999; }
+.dropdown:hover .dropdown-content { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown:hover .arrow { transform: rotate(180deg); }
+.dropdown-content a { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 10px; font-size: 0.95rem; font-weight: 500; color: #444; text-decoration: none; }
+.dropdown-content a:hover { background: #f3f0ff; color: var(--primary); }
+
+/* PAGE HEADER */
+.header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 60px 20px 100px; text-align: center; }
+.header h1 { font-size: 2.2rem; margin-bottom: 10px; }
+
+/* CONTENT CONTAINER */
+.container { max-width: 1100px; margin: -50px auto 50px auto; padding: 0 20px; }
+.card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; margin-bottom: 25px; border: 1px solid rgba(0,0,0,0.02); }
+
+/* ATTENDANCE BUTTONS */
+.btn-att { padding: 16px 40px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; color: white; margin: 10px; transition: 0.3s; font-size: 1rem; }
+.btn-att:disabled { background: #e0e0e0 !important; color: #999; cursor: not-allowed; transform: none !important; }
+.btn-in { background: var(--success); }
+.btn-in:hover:not(:disabled) { background: #2d944a; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(52, 168, 83, 0.3); }
+.btn-out { background: var(--danger); }
+.btn-out:hover:not(:disabled) { background: #d33225; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(234, 67, 53, 0.3); }
+
+/* BADGES & TABLES */
+.status-badge { padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+.badge-present { background: #e6f4ea; color: #1e7e34; }
+.badge-absent { background: #fff3e0; color: #e65100; }
+
+/* --- Export PDF Button Style --- */
+.btn-export-pdf {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.2);
+}
+
+.btn-export-pdf:hover {
+    background-color: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(111, 66, 193, 0.3);
+}
+
+.btn-export-pdf .icon {
+    font-size: 1.1rem;
+}
+
+/* --- PDF Print Optimization --- */
+@media print {
+    /* Hide everything unnecessary for the report */
+    .navbar, 
+    .main-footer, 
+    .btn-att, 
+    .btn-export-pdf, 
+    .header,
+    .clock-section,
+    .dropdown {
+        display: none !important;
+    }
+
+    /* Expand the history card to fill the full page */
+    .container {
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    body {
+        background: white !important;
+    }
+
+    /* Add a Title only visible in the PDF */
+    .card::before {
+        content: "OFFICIAL INTERNSHIP ATTENDANCE REPORT";
+        display: block;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: black;
+    }
+
+    th, td {
+        border-bottom: 1px solid #ddd !important;
+    }
+}
+
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th, td { padding: 16px; border-bottom: 1px solid #f0f0f0; font-size: 0.95rem; }
+th { color: #888; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; font-size: 0.8rem; }
+
+.btn-print { background: #f3f0ff; color: var(--primary); border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+.btn-print:hover { background: var(--primary); color: white; }
+
+.restricted-msg { background: #fff5f5; color: #c53030; padding: 20px; border-radius: 15px; border: 1px solid #fed7d7; }
+
+/* FOOTER */
+.main-footer { margin-top: auto; background: white; border-top: 1px solid #eee; padding: 25px 0; }
+.footer-bottom { text-align: center; color: #777; font-size: 0.9rem; }
+
+@media print { .navbar, .main-footer, .btn-att, .btn-print, .header { display: none !important; } .container { margin-top: 0; } .card { box-shadow: none; border: 1px solid #eee; } }
