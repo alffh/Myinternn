@@ -1,15 +1,12 @@
 <?php
-// 1. MESTI panggil session_start & db_connect di baris teratas
 session_start();
 include 'db_connect.php';
 
-// 2. Semak akses: Pastikan hanya lecturer yang sah
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'lecturer') {
     header("Location: login.php");
     exit();
 }
 
-// 3. LOGIK AUTO-SYNC: Dapatkan kod kursus pensyarah yang sedang login
 $user_id = $_SESSION['user_id'];
 $lec_stmt = $conn->prepare("SELECT programme_code FROM lecturers WHERE user_id = ?");
 $lec_stmt->bind_param("i", $user_id);
@@ -19,7 +16,6 @@ $lec_result = $lec_stmt->get_result()->fetch_assoc();
 $assigned_programme = $lec_result['programme_code'] ?? '';
 $search_term = "%" . $assigned_programme . "%";
 
-// 4. Query Laporan: Ganti 'overall_score' kepada 'final_score'
 $query = "SELECT s.student_id, s.student_name, s.student_number, s.programme, 
           e.evaluation_id, e.final_score 
           FROM students s 
@@ -105,7 +101,7 @@ $result = $stmt->get_result();
                             </td>
                             <td style="text-align: right;">
                                 <?php if($row['evaluation_id']): ?>
-                                    <a href="generate_report.php?id=<?php echo $row['student_id']; ?>" class="btn-download">
+                                    <a href="generate_report_lecturer.php?id=<?php echo $row['student_id']; ?>" class="btn-download">
                                         📄 Download Report
                                     </a>
                                 <?php else: ?>
