@@ -56,7 +56,7 @@ $data = $stmt->get_result()->fetch_assoc();
 
     <div class="no-print">
         <button onclick="window.print()" class="btn btn-main">PRINT CERTIFICATE</button>
-        <li><a href="company_dashboard.php">Back to dashboard</a></li>
+        <li><a href="lecturer_dashboard.php">Back to dashboard</a></li>
 </div>
 
     
