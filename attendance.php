@@ -1,12 +1,8 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
 date_default_timezone_set('Asia/Kuala_Lumpur');
 include 'db_connect.php';
 
-// 1. Session & Role Security
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'applicant') {
     header("Location: login.php");
     exit();
@@ -17,14 +13,12 @@ $today = date('Y-m-d');
 $current_time = date('H:i:s');
 $message = "";
 
-// 2. Get Student Info
 $stmt = $conn->prepare("SELECT student_id, student_name, student_number, internship_status FROM students WHERE user_id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $student_data = $stmt->get_result()->fetch_assoc();
 $student_id = $student_data['student_id'];
 
-// 3. Check Placement Status
 $check_app = $conn->prepare("SELECT COUNT(*) as is_approved FROM internship_applications WHERE student_id = ? AND application_status = 'approved'");
 $check_app->bind_param("i", $student_id);
 $check_app->execute();
@@ -32,7 +26,6 @@ $app_data = $check_app->get_result()->fetch_assoc();
 
 $is_placed = ($student_data['internship_status'] == 'placed' || $app_data['is_approved'] > 0);
 
-// 4. Handle Check-In / Check-Out Actions
 if ($is_placed && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] == 'check_in') {
         $check = $conn->prepare("SELECT * FROM attendance WHERE student_id = ? AND attendance_date = ?");
@@ -57,7 +50,6 @@ if ($is_placed && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']
     }
 }
 
-// 5. Fetch History
 $history_query = $conn->prepare("SELECT * FROM attendance WHERE student_id = ? ORDER BY attendance_date DESC");
 $history_query->bind_param("i", $student_id);
 $history_query->execute();
@@ -78,11 +70,9 @@ $todayStatus = $todayStatusQuery->get_result()->fetch_assoc();
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/applicant.css">
     <style>
-        /* Specific tweaks for Attendance Page */
         .welcome-hero { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 60px 20px 100px; text-align: center; }
         .welcome-hero h1 { font-size: 2.2rem; margin-bottom: 10px; }
         
-        /* Enlarged Table Styling */
         .attendance-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         .attendance-table th { 
             text-align: left; padding: 20px; color: #888; text-transform: uppercase; 
@@ -93,10 +83,10 @@ $todayStatus = $todayStatusQuery->get_result()->fetch_assoc();
         }
         .attendance-table tr:hover { background: #fcfaff; }
 
-        /* Clock Styling */
+        /* For Clock Styling */
         .live-clock { font-size: 3.5rem; font-weight: 800; color: var(--primary); margin: 10px 0; letter-spacing: -2px; }
         
-        /* Button layout */
+        /* For Button layout */
         .btn-group { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
         .btn-att { padding: 18px 45px; font-size: 1.1rem; font-weight: 700; width: auto; min-width: 200px; }
         .btn-success { background: #34a853; color: white; }
