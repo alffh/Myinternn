@@ -2,7 +2,6 @@
 include 'db_connect.php';
 session_start();
 
-// Kawalan akses: Hanya untuk syarikat yang sah
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'company' || !isset($_SESSION['company_id'])) {
     header("Location: login.php");
     exit();
@@ -10,7 +9,6 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'company' || !isset($_
 
 $company_id = $_SESSION['company_id'];
 
-// Ambil senarai intern yang telah diluluskan (approved) untuk syarikat ini
 $interns_query = "SELECT s.student_id, s.student_name 
                   FROM students s
                   JOIN internship_applications ap ON s.student_id = ap.student_id
@@ -22,7 +20,7 @@ $student_id = isset($_GET['id']) ? $_GET['id'] : '';
 $student = null;
 
 if (!empty($student_id)) {
-    // Menggunakan prepared statement untuk keselamatan data
+
     $stmt = $conn->prepare("SELECT * FROM students WHERE student_id = ?");
     $stmt->bind_param("i", $student_id);
     $stmt->execute();
