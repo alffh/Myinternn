@@ -2,7 +2,6 @@
 session_start();
 require 'db_connect.php';
 
-// 1. Semak Sesi
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'applicant') {
     header("Location: login.php");
     exit();
@@ -15,13 +14,11 @@ if ($ad_id === 0) {
     die("Invalid Advertisement ID.");
 }
 
-// 2. Ambil data pelajar untuk pre-fill form
 $stmt = $conn->prepare("SELECT * FROM students WHERE user_id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $student = $stmt->get_result()->fetch_assoc();
 
-// 3. Ambil maklumat iklan untuk paparan ringkas
 $ad_stmt = $conn->prepare("SELECT title FROM internship_ads WHERE ad_id = ?");
 $ad_stmt->bind_param("i", $ad_id);
 $ad_stmt->execute();
