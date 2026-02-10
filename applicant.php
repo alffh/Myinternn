@@ -63,7 +63,6 @@ $ads_result = $ads_stmt->get_result();
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/applicant.css">
     <style>
-        /* Specific styles for the motivation hero added here for convenience */
         .motivation-carousel {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white !important;
