@@ -1,30 +1,23 @@
 <?php
-// 1. MESTI baris pertama untuk membolehkan sistem baca $_SESSION
 session_start();
 
-// 2. MESTI panggil fail sambungan pangkalan data supaya $conn wujud
 include 'db_connect.php';
 
-// 3. SEKAT akses jika pengguna bukan lecturer (Security check)
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'lecturer') {
     header("Location: login.php");
     exit();
 }
 
-// 4. SEKARANG baru boleh ambil data dari $_SESSION dan guna $conn
 $user_id = $_SESSION['user_id'];
 
-// Ambil kod kursus pensyarah dari database
 $lec_stmt = $conn->prepare("SELECT programme_code FROM lecturers WHERE user_id = ?");
 $lec_stmt->bind_param("i", $user_id);
 $lec_stmt->execute();
 $lec_result = $lec_stmt->get_result()->fetch_assoc();
 
-// Jika pensyarah tiada programme_code, elakkan error
 $assigned_programme = $lec_result['programme_code'] ?? '';
 $search_term = "%" . $assigned_programme . "%";
 
-// 5. Query Logbook yang ditapis mengikut kursus pensyarah
 $query = "SELECT s.student_id, s.student_name, s.student_number, s.programme, 
           COUNT(l.logbook_id) as total_logs
           FROM students s
